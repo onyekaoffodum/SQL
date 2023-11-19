@@ -1,15 +1,21 @@
 
+/*
+Bellabeat company case study
+The company is Bellabeat is a high-tech company that manufactures health-focused smart products. They collect data on activity, sleep, stress, and reproductive health and this has allowed Bellabeat to empower women with knowledge about their own health and habits
+The task is to analyze smart device usage data in order to gain insight into how consumers use non-Bellabeat smart devices
 
---Bellabeat case study
+Skills used:Joins, Temp Tables, Windows Functions, Aggregate Functions, filter functions, Creating Views, Converting Data Types
+
+*/
+
 --Below cleaning was done in Excel
 --Formatting date column to MM-D-YY format for all files; Format decimal columns to 2 decimal places using the round function for the daily_activity_merged file; 
---Splitting the date/time column in the hourlycalories;I made a copy of the date/time column, changed the copied column to time format and then to the h:mm format using custom tab,then used the text function to convert to 24hours format time having just hours and minutes. I then splitted the other date/time column to just date using the text to columns function
---Changing the date/time column in the sleep_day file to short date format
+--I will be used the daily_activity_merged, sleep_day and hourly_calories files as it will enable me answer the business task
 
--- I will be using the daily_activity_merged, sleep_day and hourly_calories files as it will enable me answer the business task
--- Loading of daily_activity_merged, sleep_day and hourly_calories files
 
---Viewing the files imported
+-- Loading of daily_activity_merged, sleep_day and hourly_calories files into SQL SSMS
+
+--Viewing the files imported to confirm the data loaded
 
 Select *
 From [SQL Google Data Analytics Bellabeat Project]..dailyActivity_merged
@@ -21,7 +27,7 @@ Select *
 From [SQL Google Data Analytics Bellabeat Project]..sleepDay_merged
 
 
---After viewing I saw a recurrence of date & time in the date columns for all files, I had to clean the columns containing date to read just Date
+--After viewing I saw timestamp in the Date column and had to clean to read just Date
 
 Select *, cast(ActivityDate as date) as Cleaned_ActivityDate
 From [SQL Google Data Analytics Bellabeat Project]..dailyActivity_merged
@@ -322,7 +328,7 @@ Order by ActivityHours
 
 -- Correlations
 -- We will check for correlation between the TotalStep and TotalMinutesAsleep & TotalSteps and Calories burnt
--- Reference the joined table and removing irrelevant columns at this point
+-- Reference the joined query and removing irrelevant columns at this point
 
 SELECT d.Id,d. ActivityDate,d.TotalSteps,d.Calories,s.TotalMinutesAsleep
 From [SQL Google Data Analytics Bellabeat Project]..dailyActivity_merged AS d
